@@ -4,6 +4,7 @@ class UI {
   }
 
   showProfile(user) {
+    // display profile in ui
     this.profile.innerHTML = `
       <div class="card card-body mb-3">
         <div class="row">
@@ -29,5 +30,45 @@ class UI {
       <h3 class="page-heading mb-3">Latest Repos</h3>
       <div id="repos"></div>
     `;
+  }
+
+//   show alert message
+  showAlert(message, className) {
+    // clear any reamining alerts
+    this.clearAlert()
+    // create div
+    const div = document.createElement('div');
+    div.className = className
+    // add.text
+    div.appendChild(document.createTextNode(message))
+    // Get Parent
+    const container = document.querySelector('.searchContainer')
+    // get search box
+    const search = document.querySelector('.search')
+    // insert alert
+    container.insertBefore(div, search)
+
+    // timeaut after 3 sec
+        setTimeout(() => {
+            this.clearAlert()
+        }, 3000);
+  }
+
+
+
+
+
+// clear alert message
+clearAlert() {
+    const currentAlert = document.querySelector('.alert')
+
+    if (currentAlert) {
+        currentAlert.remove()
+    }
+}
+
+// clear profile
+  clearProfile() {
+    this.profile.innerHTML = ''
   }
 }
